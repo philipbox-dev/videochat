@@ -69,5 +69,8 @@ document.getElementById('camBtn').onclick = () => {
 
 function copyRoom() {
   navigator.clipboard.writeText(window.location.href);
-  alert('Room link copied!');
+  const btn = document.querySelector('.copy-btn');
+  const old = btn.textContent;
+  btn.textContent = '✓ Copied!';
+  setTimeout(() => btn.textContent = old, 2000);
 }
