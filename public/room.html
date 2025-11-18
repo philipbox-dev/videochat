@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Chat Room</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div class="room-container">
+    <div class="video-grid">
+      <div class="video-container">
+        <video id="myVideo" autoplay playsinline muted></video>
+        <div class="controls">
+          <button id="micBtn">🎤 Mic On</button>
+          <button id="camBtn">📹 Cam On</button>
+        </div>
+      </div>
+      <div class="video-container">
+        <video id="peerVideo" autoplay playsinline></video>
+        <div id="peerStatus">Waiting for someone...</div>
+      </div>
+    </div>
+
+    <div class="info">
+      <p>Room ID: <span id="roomIdDisplay"></span> 
+      <button onclick="copyRoom()">Copy Link</button></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

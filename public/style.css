@@ -1,0 +1,17 @@
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial; }
+body { background:#1a1a2e; color:white; }
+.container { max-width:500px; margin:50px auto; text-align:center; }
+.card { background:#16213e; padding:30px; margin:20px; border-radius:15px; }
+input, button { padding:12px; margin:10px; width:90%; border:none; border-radius:8px; }
+button { background:#0f3460; color:white; font-size:16px; cursor:pointer; }
+button:hover { background:#e94560; }
+
+.room-container { padding:20px; }
+.video-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:1000px; margin:0 auto; }
+.video-container { position:relative; background:black; border-radius:15px; overflow:hidden; }
+video { width:100%; height:auto; display:block; }
+.controls { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); }
+.controls button { padding:10px 15px; margin:5px; border:none; border-radius:50px; background:rgba(0,0,0,0.7); color:white; }
+#peerStatus { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:20px; }
+.info { text-align:center; margin:20px; }
+@media (max-width:768px) { .video-grid { grid-template-columns:1fr; } }

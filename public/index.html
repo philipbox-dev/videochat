@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create or Join Room</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Private Video Chat</h1>
+    
+    <div class="card">
+      <h2>Create New Room</h2>
+      <input type="password" id="createPass" placeholder="Set room password" required>
+      <button onclick="createRoom()">Create Room</button>
+    </div>
+
+    <div class="card">
+      <h2>OR Join Existing Room</h2>
+      <input type="text" id="roomId" placeholder="Enter Room ID" required>
+      <input type="password" id="joinPass" placeholder="Room password" required>
+      <button onclick="joinRoom()">Join Room</button>
+    </div>
+
+    <p id="error" style="color:red; margin-top:20px;"></p>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    function createRoom() {
+      const pass = document.getElementById('createPass').value;
+      if (!pass) return alert("Password required");
+      
+      socket.emit('create-room', pass, (roomId) => {
+        window.location = `/room/${roomId}?password=${pass}`;
+      });
+    }
+
+    function joinRoom() {
+      const roomId = document.getElementById('roomId').value.trim();
+      const pass = document.getElementById('joinPass').value;
+      if (!roomId || !pass) return alert("Fill all fields");
+
+      socket.emit('join-room', roomId, pass, (err, confirmedRoomId) => {
+        if (err) {
+          document.getElementById('error').textContent = err;
+        } else {
+          window.location = `/room/${confirmedRoomId}?password=${pass}`;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
