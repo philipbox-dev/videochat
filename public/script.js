@@ -5,8 +5,11 @@ const password = urlParams.get('password');
 document.getElementById('roomIdDisplay').textContent = roomId || 'Loading...';
 
 const socket = io();
-const peer = new Peer();
-
+const peer = new Peer(undefined, {
+  host: '0.peerjs.com',
+  secure: true,
+  port: 443
+});
 let myStream = null;  // важно: изначально null
 
 const myVideo = document.getElementById('myVideo');
